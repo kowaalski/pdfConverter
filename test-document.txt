@@ -1,0 +1,10 @@
+Hola Mundo!
+
+Este es un documento de prueba para la API de conversión PDF.
+
+Características a probar:
+1. Texto simple
+2. Formato básico
+3. Conversión DOCX → PDF
+
+¡La conversión debería preservar todo el formato!

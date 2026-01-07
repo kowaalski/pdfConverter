@@ -38,7 +38,8 @@ git push origin main
 
 2. **Crear nuevo proyecto/servicio**:
    - Click en "+ Create" o "New Service"
-   - Tipo: **Git Service** o **GitHub Service**
+   - Tipo: App
+   - Source: **Git Service** o **GitHub Service**
 
 3. **Configuración del repositorio**:
    - **Repository**: URL de tu repositorio
