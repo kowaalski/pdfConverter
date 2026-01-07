@@ -1,0 +1,13 @@
+{
+  "$comment": "Este archivo es OPCIONAL y solo necesario si despliegas en Railway. Para otras plataformas (EasyPanel, VPS, etc.) puedes ignorarlo.",
+  "$schema": "https://railway.app/railway.schema.json",
+  "build": {
+    "builder": "DOCKERFILE",
+    "dockerfilePath": "Dockerfile"
+  },
+  "deploy": {
+    "startCommand": "node server.js",
+    "restartPolicyType": "ON_FAILURE",
+    "restartPolicyMaxRetries": 10
+  }
+}
