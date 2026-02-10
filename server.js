@@ -106,5 +106,4 @@ app.use((req, res) => {
 // Start server
 app.listen(PORT, () => {
   console.log(`PDF Converter API listening on port ${PORT}`);
-  console.log(`Allowed origins: ${allowedOrigins.join(', ')}`);
 });
