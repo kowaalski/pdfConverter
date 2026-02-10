@@ -12,24 +12,8 @@ const PORT = process.env.PORT || 3000;
 // Promisify the libre.convert function
 const convertAsync = promisify(libre.convert);
 
-// Configure CORS
-const allowedOrigins = process.env.ALLOWED_ORIGINS 
-  ? process.env.ALLOWED_ORIGINS.split(',') 
-  : ['http://localhost:3000', 'https://fundocs.vercel.app'];
-
-app.use(cors({
-  origin: function(origin, callback) {
-    // Allow requests with no origin (like mobile apps or curl requests)
-    if (!origin) return callback(null, true);
-    
-    if (allowedOrigins.indexOf(origin) === -1 && allowedOrigins.indexOf('*') === -1) {
-      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-      return callback(new Error(msg), false);
-    }
-    return callback(null, true);
-  },
-  credentials: true
-}));
+// CORS: servicio interno de Docker, solo recibe tráfico de funDocs server-side
+app.use(cors());
 
 app.use(express.json());
 
@@ -60,7 +44,7 @@ app.post('/convert', upload.single('file'), async (req, res) => {
   try {
     // Check if file was uploaded
     if (!req.file) {
-      return res.status(400).json({ 
+      return res.status(400).json({
         error: 'No file uploaded',
         message: 'Please provide a DOCX file in the request'
       });
@@ -87,9 +71,9 @@ app.post('/convert', upload.single('file'), async (req, res) => {
 
   } catch (error) {
     console.error('Conversion error:', error);
-    res.status(500).json({ 
+    res.status(500).json({
       error: 'Conversion failed',
-      message: error.message 
+      message: error.message
     });
   }
 });
@@ -104,7 +88,7 @@ app.use((err, req, res, next) => {
       });
     }
   }
-  
+
   res.status(500).json({
     error: 'Server error',
     message: err.message
